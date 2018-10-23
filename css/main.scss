@@ -1,0 +1,86 @@
+$color: (
+    main_bg: #000,
+    main_font: #fff,
+    content_bg: #222,
+    blue: #36f
+);
+
+html, body {
+    width: 100%;
+    height: 100%;
+    padding: 0%;
+    margin: 0%;
+    overflow: hidden;
+}
+
+body{
+    background-color: map-get($color, main_bg);
+    color: map-get($color, main_font);
+    display: grid;
+    grid-template-rows: 50px 10fr 20px;
+    grid-template-areas: 
+        "topBar"
+        "content"
+        "footer";
+
+    li{
+        list-style: none;
+        text-align: center;
+        padding: 3px;
+        font-size: 40px;
+    }
+}
+
+nav{
+    grid-area: topBar;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#content{
+    background-color: map-get($color, content_bg);
+    overflow-y:auto;
+    grid-template: content;
+
+    .fallowed {
+        height: 100px;
+        width: 100px;
+        float: left;
+        display: none;
+    }
+}
+
+#menu{
+    background-color: map-get($color, content_bg);
+    overflow-y:auto;
+    grid-template: content;
+}
+
+footer{
+    grid-area: footer;
+    text-align: center;
+}
+
+@media(min-width: 1000px) {
+    body{
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+        grid-template-rows: 50px 10fr 20px;
+        grid-template-areas: 
+            "topBar topBar"
+            "menu content"
+            "footer content";
+    }
+    #menu{
+        grid-template: menu;
+        background-color: map-get($color, main_bg );
+    }
+    
+    #content{
+        grid-column: 2/3;
+        grid-row: 2/4;
+    }
+    #menuButton {
+        display: none;
+    }
+}
